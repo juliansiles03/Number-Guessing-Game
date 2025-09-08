@@ -1,11 +1,12 @@
 #!/bin/bash
-# ^ esto siempre arriba (shebang)
+# Number Guessing Game - freeCodeCamp project
+# Script para jugar adivinando un número y guardar resultados en PostgreSQL
 
 # Variable de conexión a la DB
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 # 1. Pedir username
-echo "Enter your username:"
+echo -e "Enter your username:"
 read USERNAME
 
 # 2. Buscar usuario en DB
@@ -24,9 +25,9 @@ else
   echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
 fi
 
-# 3. Generar número aleatorio
+# 3. Generar número aleatorio entre 1 y 1000
 SECRET_NUMBER=$(( RANDOM % 1000 + 1 ))
-echo "Guess the secret number between 1 and 1000:"
+echo -e "Guess the secret number between 1 and 1000:"
 
 # 4. Loop de adivinanza
 GUESSES=0
@@ -49,4 +50,6 @@ done
 
 # 5. Cuando acierta
 echo "You guessed it in $GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
+
+# Insert game result into database
 $PSQL "INSERT INTO games(user_id, guesses) VALUES($USER_ID, $GUESSES)"
