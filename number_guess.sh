@@ -6,7 +6,7 @@
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 # 1. Pedir username
-echo -e "Enter your username:"
+echo -e "\nEnter your username:"
 read USERNAME
 
 # 2. Buscar usuario en DB
