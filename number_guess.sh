@@ -31,6 +31,8 @@ echo -e "Guess the secret number between 1 and 1000:"
 
 # 4. Loop de adivinanza
 GUESSES=0
+
+# Loop until the correct number is guessed
 while [[ $GUESS != $SECRET_NUMBER ]]
 do
   read GUESS
